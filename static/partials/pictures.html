@@ -1,0 +1,72 @@
+<div class="container-fluid">
+    <div class="panel panel-primary">
+    
+        <div class="panel-body">
+            <div class="filters">
+                <label class="col-md-1 add-padding text-right"> Api List :</label>
+
+                <div class="col-md-2 mB-10">
+                    <select class="form-control" ng-model="apiSelected" ng-change = "getPhoto(apiSelected)">
+                        <option value="recent">Recent</option>
+                        <option value="public">Public</option>
+                    </select>
+                </div>
+                <label class="col-md-1 add-padding text-right "> Image Size:</label>
+
+                <div class="col-md-2 mB-10">
+                    <select class="form-control" ng-model="photoSelected" ng-change="getPhoto(apiSelected)">
+                        <option ng-repeat="name in photoSizes" value="{{ name.value }}" ng-selected="{{ photoSelected == name.value}}">{{ name.displayName }}</option>
+                    </select>
+                </div>
+                 <label class="col-md-1 add-padding text-right"> Sort By :</label>
+
+                <div class="col-md-2 mB-10">
+                    <select class="form-control" ng-model="predicate">
+                        <option value="id">ID</option>
+                        <option value="owner">Owner</option>
+                        <option value="title">Title</option>
+                    </select>
+                </div>
+
+
+
+                <div class="col-md-3 pull-right">
+                    <input class="form-control" ng-model="search" placeholder="Search This Page for .....">
+                </div>
+
+            </div>
+            <hr class="clear">
+            <div class="bg-primary panel-body">
+                By default RecentPhotos Api with large square photo sorted by ID is used and 100 items per page is displayed, use the pagination to view the other photos. To view more details click on the image.
+            </div>
+            <hr class="clear">
+            <div class="panel-body">
+                <div class="photo thumbnail " ng-repeat="photo in photoList |filter:search | orderBy:predicate:reverse "
+                     ng-show="photoList.length" ng-click="photoInfo(photo)">
+                  <img  class="img-responsive" ng-src="{{photo.url}}" >
+                  <div class="text-center bg-primary" data-toggle="tooltip" title="{{photo.title}}">{{photo.title  | shorten:40 }}</div> 
+                  <div class="text-center bg-primary"  ng-hide ="{{photo.title.length}}" data-toggle="tooltip" title="{{photo.id}}">{{photo.id  | shorten:40 }}</div>
+                </div>
+
+
+                <div ng-if='fail' class="">
+                    <div ng-class="{blue:'bg-info panel-body text-center', red:'bg-danger panel-body text-center'}[class_name]"
+                         ng-show="message"
+                         ng-bind-html="message">
+                    </div>
+
+                </div>
+                <div class="text-center" ng-show="loading">
+                    <i class="fa fa-spin fa-spinner fa-3x"></i>
+                </div>
+                <hr class="clear">
+                <div class="text-center clear">
+                    <button class="btn btn-primary btn-sm" ng-click="getPrev()" ng-class="{ 'disabled': !prev }">Prev</button>
+                    <button class="btn btn-primary btn-sm" ng-click="getNext()" ng-class="{ 'disabled': !next }">Next</button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

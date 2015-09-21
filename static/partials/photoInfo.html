@@ -1,0 +1,33 @@
+<div class="panel panel-primary" style="margin-bottom: 0">
+    <div class="panel-heading">
+        <b class="text-center">Photo Id {{photo.id}}</b>
+        <i class="fa fa-times-circle pull-right" ng-click="close()"></i>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-12 text-center">
+            <img class="img-responsive thumbnail"ng-src="{{photo.url}}">
+            <div class="text-center bg-warning">{{photo.title}}</div>
+        </div>
+        <hr class="clear">
+        <label class="col-md-3"> Id :</label>
+        <span class="col-md-3"> {{photo.id}}</span>
+        <label class="col-md-3"> Owner :</label>
+        <span class="col-md-3 mB-10"> {{photo.owner}}</span>
+        <hr class="clear">
+        <label class="col-md-3"> Public:</label>
+        <span class="col-md-3">
+            <i class="fa fa-thumbs-up text-success" ng-if="photo.ispublic ==1"></i>
+            <i class="fa fa-thumbs-down text-danger" ng-if="photo.ispublic ==0"></i>
+        </span>
+        <label class="col-md-3"> Friend :</label>
+      <span class="col-md-3">
+            <i class="fa fa-check text-success" ng-if="photo.isfriend ==1"></i>
+            <i class="fa fa-times text-danger" ng-if="photo.isfriend ==0"></i>
+        </span>
+
+        <hr class="clear">
+        <div class="text-center">
+            <button class="btn btn-success" ng-click="ok()">OK</button>
+        </div>
+    </div>
+</div>

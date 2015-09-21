@@ -1,0 +1,16 @@
+{
+    "name": "flickr",
+    "version": "1.0.0",
+    "description": "flickr API app",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "author": "Ashwini",
+    "license": "ISC",
+    "dependencies": {
+        "connect": ">= 1.2.0",
+        "serve-static": ">= 0.1.0"
+    }
+}
